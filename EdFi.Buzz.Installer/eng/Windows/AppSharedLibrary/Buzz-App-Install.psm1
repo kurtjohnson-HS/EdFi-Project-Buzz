@@ -101,10 +101,6 @@ function Assert-NodeJs {
 
 
     if (Get-Command npm -errorAction SilentlyContinue) {
-        $npmVer = npm
-    }
-
-    if ($npmVer) {
         Write-Host "NPM is installed"
     }
     else {
@@ -310,7 +306,7 @@ function Install-NginxFiles {
         $rootDir
     )
 	Install-NpmDevPackages -appPath "$PSScriptRoot\..\src\"
-	
+
 	Start-RedoSite -appPath "$PSScriptRoot\..\src\"
 
     # Copy the build directory into the NGiNX folder
@@ -321,8 +317,8 @@ function Install-NginxFiles {
         Force       = $true
     }
     Copy-Item @parameters
-	
-	
+
+
     Update-NginxConf -sourcePath "$($PSScriptRoot)\..\" -appPath "$webSitePath\$nginxVersion\conf" -rootDir $rootDir -nginxPort $nginxPort
 
     Install-NpmPackages -appPath "$webSitePath\$nginxVersion\$rootDir"
