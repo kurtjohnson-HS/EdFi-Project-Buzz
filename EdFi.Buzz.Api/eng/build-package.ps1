@@ -51,8 +51,8 @@ function Invoke-PrepForDistribution {
 
   Move-Item -Path "package-lock.json" -Destination "./dist" -Force
 
-  # Also need a copy of package.json
-  Copy-Item -Path "package.json" -Destination "./dist" -Force
+  # Also need a copy of jsons
+  Copy-Item -Path "*.json" -Destination "./dist" -Force
 
   # Copy the *.graphql files, which are not included in the dist output
   Copy-Item -Path "./src/graphql/schema" -Destination "./dist/graphql" -Force -Recurse
