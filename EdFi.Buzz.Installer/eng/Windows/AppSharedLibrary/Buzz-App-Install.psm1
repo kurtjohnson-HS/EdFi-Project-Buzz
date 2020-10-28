@@ -198,7 +198,8 @@ function Install-NpmPackages {
     try {
         Write-Host "Installing NPM packages..." -ForegroundColor Green
         Push-Location $appPath
-        & $script:npm install --silent
+        & $script:npm install --production --silent
+
     }
     catch {
         Write-Error "Error on npm install"
@@ -356,8 +357,6 @@ function Install-NginxFiles {
 
 
     Update-NginxConf -sourcePath "$($PSScriptRoot)\..\" -appPath "$webSitePath\$nginxVersion\conf" -rootDir $rootDir -nginxPort $nginxPort
-
-    Install-NpmPackages -appPath "$webSitePath\$nginxVersion\$rootDir"
 }
 
 function Update-WebConfig {
