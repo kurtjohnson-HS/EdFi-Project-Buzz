@@ -124,6 +124,11 @@ function Initialize-AppInstaller {
 
     Write-Host "Starting Initialize-AppInstaller ..."
 
+    $reactScripts = (Get-Command react-scripts -ErroAction SilentlyContinue).Name
+    if (-not $reactScripts) {
+        Write-Host "Installing react-scripts..."
+        & $npm install -g react-scripts
+    }
 
     Write-Host "Initialize-AppInstaller complete."
 }
