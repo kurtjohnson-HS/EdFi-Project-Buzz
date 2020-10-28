@@ -292,7 +292,7 @@ function Install-NginxService {
     &$edFiBuzzExe start
 }
 
-function Install-NginxFiles {
+function Install-NginxFilesNoBuild {
     param(
         [string]
         $nginxVersion,
@@ -305,13 +305,44 @@ function Install-NginxFiles {
         [string]
         $rootDir
     )
-	Install-NpmDevPackages -appPath "$PSScriptRoot\..\src\"
-
-	Start-RedoSite -appPath "$PSScriptRoot\..\src\"
 
     # Copy the build directory into the NGiNX folder
     $parameters = @{
-        Path        = "$PSScriptRoot\..\src\$rootDir"
+        Path        = "$PSScriptRoot\..\$rootDir"
+        Destination = "$webSitePath\$nginxVersion\$rootDir"
+        Recurse     = $true
+        Force       = $true
+    }
+    Copy-Item @parameters
+
+    Update-NginxConf -sourcePath "$($PSScriptRoot)\..\" -appPath "$webSitePath\$nginxVersion\conf" -rootDir $rootDir -nginxPort $nginxPort
+
+    Install-NpmPackages -appPath "$webSitePath\$nginxVersion\$rootDir"
+
+}
+
+function Install-NginxFiles {
+    param(
+        [string]
+        $nginxVersion,
+        [string]
+        $webSitePath,
+        [string]
+        $fileContents,
+        [string]
+        $nginxPort,
+        [string]
+        $rootDir,
+        [string]
+        $srcDir
+    )
+	Install-NpmDevPackages -appPath "$PSScriptRoot\..\$srcDir\"
+
+	Start-RedoSite -appPath "$PSScriptRoot\..\$srcDir\"
+
+    # Copy the build directory into the NGiNX folder
+    $parameters = @{
+        Path        = "$PSScriptRoot\..\$srcDir\$rootDir"
         Destination = "$webSitePath\$nginxVersion\"
         Recurse     = $true
         Force       = $true
@@ -369,6 +400,7 @@ $functions = @(
     "Initialize-Installer"
     "Install-NpmPackages"
     "Install-NginxService"
+    "Install-NginxFilesNoBuild"
     "Install-NginxFiles"
     "Update-WebConfig"
     "Update-NginxConf"

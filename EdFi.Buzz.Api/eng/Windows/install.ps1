@@ -164,7 +164,7 @@ try {
   New-Item -Path $script:InstallPath -ItemType Directory -Force | Out-Null
 
   $nginxVersion = Get-HelperAppIfNotExists -Url $NginxUrl -targetLocation $script:InstallPath
-  Install-NginxFiles -nginxVersion $nginxVersion -webSitePath $script:InstallPath -fileContents $envFile -rootDir $rootDir -nginxPort $nginxPort
+  Install-NginxFilesNoBuild -nginxVersion $nginxVersion -webSitePath $script:InstallPath -fileContents $envFile -rootDir $rootDir -nginxPort $nginxPort
 
   New-DotEnvFile -appPath "$script:InstallPath\$nginxVersion\" -fileContents $envFile
 

@@ -120,7 +120,7 @@ try {
   New-Item -Path $script:InstallPath -ItemType Directory -Force | Out-Null
   New-DotEnvFileSrc -fileContents $envFile
   $nginxVersion = Get-HelperAppIfNotExists -Url $NginxUrl -targetLocation $script:InstallPath
-  Install-NginxFiles -nginxVersion $nginxVersion -webSitePath $script:InstallPath -fileContents $envFile -rootDir $rootDir -nginxPort $nginxPort
+  Install-NginxFiles -nginxVersion $nginxVersion -webSitePath $script:InstallPath -fileContents $envFile -rootDir $rootDir -nginxPort $nginxPort -srcDir "src"
 
   # NGINX will be mapped to a different port and redirect thru ARR Reverse Proxy in the web.config.
   $winSwVersion = Get-HelperAppIfNotExists -Url $WinSWUrl -targetLocation $script:InstallPath
