@@ -96,8 +96,8 @@ function Install-Database {
     try {
         Push-Location -Path $distFolder
         $ErrorActionPreference = "Continue"
-        Write-Host "Executing: npm install --production" -ForegroundColor Magenta
-        $output = & $npm install --production --silent 2>&1
+        Write-Host "Executing: npm install " -ForegroundColor Magenta
+        $output = & $npm install --silent 2>&1
 
         Write-Host "Executing: npm run init-db $DbName --config ./create-database.json" -ForegroundColor Magenta
         $output = & $npm run init-db "$DbName" --config ./create-database.json 2>&1

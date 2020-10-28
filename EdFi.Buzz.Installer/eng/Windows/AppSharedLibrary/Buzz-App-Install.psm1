@@ -193,7 +193,7 @@ function Install-NpmPackages {
     try {
         Write-Host "Installing NPM packages..." -ForegroundColor Green
         Push-Location $appPath
-        & $script:npm install --production --silent
+        & $script:npm install --silent
     }
     catch {
         Write-Error "Error on npm install"

@@ -157,8 +157,8 @@ function Install-DistFiles {
   Copy-Item @parameters
 
   Push-Location "$installPath/dist"
-  Write-Host "Executing: npm install --production"
-  & $npm install --production --silent
+  Write-Host "Executing: npm install"
+  & $npm install --silent
   Pop-Location
 }
 
