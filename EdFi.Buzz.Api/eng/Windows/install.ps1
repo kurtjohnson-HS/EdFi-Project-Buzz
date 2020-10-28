@@ -56,9 +56,6 @@ param(
   [string]
   $SqlServerHost = "127.0.0.1",
 
-  [bool]
-  $KeepSurveysSynch = $false,
-
   [Parameter(Mandatory = $true)]
   [int]
   $SqlServerPort = 5432,
@@ -90,33 +87,33 @@ if ("google" -eq $idProvider) {
     * See the LICENSE and NOTICES files in the project root for more information.
     */
   NODE_TLS_REJECT_UNAUTHORIZED='1'
-  BUZZ_API_DB_HOST = '$DbServer'
-  BUZZ_API_DB_PORT = $DbPort
-  BUZZ_API_DB_USERNAME ='$DbUserName'
-  BUZZ_API_DB_PASSWORD = '$DbPassword'
-  BUZZ_API_DB_DATABASE = '$DbName'
-  BUZZ_API_DB_SCHEMA = '$schema'
-  BUZZ_API_HTTP_PORT = $port
-  BUZZ_WORKER_JOB_NAME = 'buzzSurvey'
-  BUZZ_WORKER_CLEANUP_JOB_NAME = 'buzzCleanUp'
-  ODS_DBNAME=$SqlServerDbName
-  ODS_SERVER=$SqlServerHost
-  ODS_USER=$SqlServerUserName
-  ODS_PASSWORD=$SqlServerPassword
+  BUZZ_API_DB_HOST='$DbServer'
+  BUZZ_API_DB_PORT=$DbPort
+  BUZZ_API_DB_USERNAME='$DbUserName'
+  BUZZ_API_DB_PASSWORD='$DbPassword'
+  BUZZ_API_DB_DATABASE='$DbName'
+  BUZZ_API_DB_SCHEMA='$schema'
+  BUZZ_API_HTTP_PORT=$port
+  BUZZ_WORKER_JOB_NAME='buzzSurvey'
+  BUZZ_WORKER_CLEANUP_JOB_NAME='buzzCleanUp'
+  ODS_DBNAME='$SqlServerDbName'
+  ODS_SERVER='$SqlServerHost'
+  ODS_USER='$SqlServerUserName'
+  ODS_PASSWORD='$SqlServerPassword'
   ODS_PORT=$SqlServerPort
   ODS_TRUSTSERVERCERTIFICATE=false
   ODS_ENABLEARITHABORT=true
   ODS_ENCRYPT=false
   URI_DISCOVERY=https://accounts.google.com/.well-known/openid-configuration
   GOOGLE_DISCOVERY=https://accounts.google.com/.well-known/openid-configuration
-  GOOGLE_CLIENT_ID=$googleClientID
-  GOOGLE_SECRET=$clientSecret
-  GOOGLE_AUTH_CALLBACK=$googleAuthCallback
-  SURVEY_FILES_FOLDER=$surveyFilesFolder
+  GOOGLE_CLIENT_ID='$googleClientID'
+  GOOGLE_SECRET='$clientSecret'
+  GOOGLE_AUTH_CALLBACK='$googleAuthCallback'
+  SURVEY_FILES_FOLDER='$surveyFilesFolder'
   SURVEY_MAX_FILE_SIZE_BYTES=1mb
   SURVEY_PROCESS_INITIAL_STATUS_KEY=1
-  SURVEY_FILES_RETENTION_DAYS=1
-  KEEP_SURVEY_SYNCH=$KeepSurveysSynch
+  SURVEY_FILES_RETENTION_DAYS=10
+
 "@
 }
 else {
@@ -128,19 +125,19 @@ else {
     * See the LICENSE and NOTICES files in the project root for more information.
     */
   NODE_TLS_REJECT_UNAUTHORIZED='1'
-  BUZZ_API_DB_HOST = '$DbServer'
-  BUZZ_API_DB_PORT = $DbPort
-  BUZZ_API_DB_USERNAME ='$DbUserName'
-  BUZZ_API_DB_PASSWORD = '$DbPassword'
-  BUZZ_API_DB_DATABASE = '$DbName'
-  BUZZ_API_DB_SCHEMA = '$schema'
-  BUZZ_API_HTTP_PORT = $port
-  BUZZ_WORKER_JOB_NAME = 'buzzSurvey'
-  BUZZ_WORKER_CLEANUP_JOB_NAME = 'buzzCleanUp'
-  ODS_DBNAME=$SqlServerDbName
-  ODS_SERVER=$SqlServerHost
-  ODS_USER=$SqlServerUserName
-  ODS_PASSWORD=$SqlServerPassword
+  BUZZ_API_DB_HOST='$DbServer'
+  BUZZ_API_DB_PORT=$DbPort
+  BUZZ_API_DB_USERNAME='$DbUserName'
+  BUZZ_API_DB_PASSWORD='$DbPassword'
+  BUZZ_API_DB_DATABASE='$DbName'
+  BUZZ_API_DB_SCHEMA='$schema'
+  BUZZ_API_HTTP_PORT=$port
+  BUZZ_WORKER_JOB_NAME='buzzSurvey'
+  BUZZ_WORKER_CLEANUP_JOB_NAME='buzzCleanUp'
+  ODS_DBNAME='$SqlServerDbName'
+  ODS_SERVER='$SqlServerHost'
+  ODS_USER='$SqlServerUserName'
+  ODS_PASSWORD='$SqlServerPassword'
   ODS_PORT=$SqlServerPort
   ODS_TRUSTSERVERCERTIFICATE=false
   ODS_ENABLEARITHABORT=true
@@ -153,8 +150,7 @@ else {
   SURVEY_FILES_FOLDER=$surveyFilesFolder
   SURVEY_MAX_FILE_SIZE_BYTES=1mb
   SURVEY_PROCESS_INITIAL_STATUS_KEY=1
-  SURVEY_FILES_RETENTION_DAYS=1
-  KEEP_SURVEY_SYNCH=$KeepSurveysSynch
+  SURVEY_FILES_RETENTION_DAYS=10
 
 "@
 }
