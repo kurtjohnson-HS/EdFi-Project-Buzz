@@ -28,7 +28,9 @@ function Invoke-NuGetPack{
     "pack",
     "edfi.buzz.database.nuspec",
     "-version",
-    $FullVersion
+    $FullVersion,
+    "-Properties",
+    "NoWarn=NU5110"
   )
 
   Write-Host "Executing: nuget.exe" @parameters -ForegroundColor Magenta
