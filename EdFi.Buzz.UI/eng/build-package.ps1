@@ -44,17 +44,22 @@ function Invoke-PrepForDistribution {
     Exit
   }
 
+  #Create new build directory
+  Remove-Item -Path ./build -Recurse -Force -ErrorAction SilentlyContinue
+
+  New-Item -Path ./build -ItemType Directory
+
   Move-Item -Path "package-lock.json" -Destination "./build" -Force
 
-  # Also need a copy of package.json
   Copy-Item -Path "package.json" -Destination "./build" -Force
 
-  Pop-Location
-}
+  Copy-Item -Path "tsconfig.json" -Destination "./build" -Force
 
-if (-not (Test-Path "$PSScriptRoot/../build")) {
-  Write-Error "Run `yarn build` before calling this script"
-  Exit
+  Copy-Item -Path "./public" -Destination "./build/public" -Recurse
+
+  Copy-Item -Path "./src" -Destination "./build/src" -Recurse
+
+  Pop-Location
 }
 
 Invoke-PrepForDistribution
